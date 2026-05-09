@@ -22,7 +22,7 @@ export default function Hero() {
             className="flex items-center gap-2 mb-6"
           >
             <span className="h-px w-8 bg-navy/20" />
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/60">Legal AI & Compliance Specialist</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/60">Legal AI & Compliance</span>
           </motion.div>
 
           {/* 标题：纯汉字格式，分行排列 */}

@@ -93,7 +93,13 @@ export default function Navbar() {
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   className="absolute right-0 mt-3 w-72 bg-warm-white-soft border border-navy/10 rounded-2xl shadow-xl overflow-hidden p-2"
                 >
-                  <div className="p-3 border-b border-navy/5">
+                  <div className="px-3 pt-3 pb-2">
+                    <p className="text-xs font-kai italic text-navy/50 text-center">
+                      或许我的 Personality 比我的简历更吸引人，期待和您的见面！
+                    </p>
+                  </div>
+                  
+                  <div className="p-3 border-t border-navy/5">
                     <p className="text-xs font-semibold uppercase tracking-wider text-navy/40 mb-3">简历与跳转</p>
                     <a 
                       href="/assets/documents/resume.pdf" 
@@ -115,7 +121,7 @@ export default function Navbar() {
                     <p className="text-xs font-semibold uppercase tracking-wider text-navy/40 mb-3">联系方式</p>
                     <ContactItem icon={<Mail className="w-4 h-4" />} label="Email" value="Macie2024@163.com" />
                     <ContactItem icon={<Phone className="w-4 h-4" />} label="Phone" value="+86 173-1550-3752" />
-                    <ContactItem icon={<MessageSquare className="w-4 h-4" />} label="WeChat" value="macie_tang" />
+                    <ContactItem icon={<MessageSquare className="w-4 h-4" />} label="WeChat" value="17315503752" />
                     <a 
                       href="https://linkedin.com/in/macietang" 
                       target="_blank" 

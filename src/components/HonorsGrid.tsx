@@ -26,7 +26,7 @@ export default function HonorsGrid() {
             </div>
             <div className="w-px h-12 bg-navy/10" />
             <div className="flex flex-col items-end">
-              <span className="text-3xl font-bold text-navy">JU</span>
+              <span className="text-3xl font-bold text-navy">JNU</span>
               <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-accent">B.S. CS</span>
             </div>
           </div>

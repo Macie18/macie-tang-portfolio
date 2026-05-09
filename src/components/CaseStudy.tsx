@@ -63,12 +63,12 @@ export default function CaseStudy() {
 
               <div className="grid grid-cols-2 gap-6 mt-12">
                 <div className="p-6 bg-navy/5 rounded-2xl border border-navy/5">
-                  <p className="text-3xl font-bold text-navy font-serif italic">40+</p>
-                  <p className="text-[10px] uppercase text-navy/40 font-bold tracking-widest mt-2">真实案件整理</p>
+                  <p className="text-3xl font-bold text-navy font-serif italic">10万元+</p>
+                  <p className="text-[10px] uppercase text-navy/40 font-bold tracking-widest mt-2">受害者追回欠款</p>
                 </div>
                 <div className="p-6 bg-navy/5 rounded-2xl border border-navy/5">
-                  <p className="text-3xl font-bold text-navy font-serif italic">70+</p>
-                  <p className="text-[10px] uppercase text-navy/40 font-bold tracking-widest mt-2">受害者追回欠款</p>
+                  <p className="text-3xl font-bold text-navy font-serif italic">40+</p>
+                  <p className="text-[10px] uppercase text-navy/40 font-bold tracking-widest mt-2">真实案件整理</p>
                 </div>
               </div>
             </motion.div>
