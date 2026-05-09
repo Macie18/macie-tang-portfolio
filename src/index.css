@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Noto+Serif+SC:wght@400;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.css');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", "Noto Serif SC", "STSong", "SimSun", ui-serif, Georgia, serif;
+  --font-kai: "LXGW WenKai Screen", "STKaiti", "KaiTi", serif;
+
+  --color-warm-white: #FAF9F6;
+  --color-warm-white-soft: #FCFCFA;
+  --color-navy: #0A192F;
+  --color-ink: #111827;
+  --color-secondary-grey: #4B5563;
+  --color-pill-bg: #EEF2FF;
+  --color-accent: #6366F1;
+}
+
+@layer base {
+  body {
+    @apply bg-warm-white text-ink font-sans antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-sans font-bold tracking-tight text-navy;
+  }
+
+  /* Custom scrollbar for better aesthetics */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-navy/10 rounded-full hover:bg-navy/20 transition-colors;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .mask-fade-out {
+    mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  }
+
+  .font-kai {
+    font-family: var(--font-kai);
+  }
+}
