@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Search, GraduationCap, Award } from 'lucide-react';
+import { X, Search, GraduationCap, Award, Eye } from 'lucide-react';
 import { Honor } from '../types';
 import { HONORS, EDUCATION } from '../constants';
 import { cn } from '../utils';
@@ -35,28 +35,48 @@ export default function HonorsGrid() {
         {/* Education Section */}
         <div className="grid md:grid-cols-3 gap-8 mb-24">
           {EDUCATION.map((edu, idx) => (
-            <motion.div 
+            <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="p-8 bg-warm-white-soft rounded-3xl border border-navy/5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden group"
+              className="p-8 bg-warm-white-soft rounded-3xl border border-navy/5 shadow-sm hover:shadow-md transition-all relative overflow-hidden group"
             >
-              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                <GraduationCap className="w-16 h-16 text-navy" />
-              </div>
-              <h3 className="text-xl font-bold text-navy mb-1">{edu.school}</h3>
-              <p className="text-sm font-medium text-accent mb-4">{edu.degree}</p>
-              <p className="text-xs text-navy/40 mb-6 font-mono">{edu.period}</p>
-              
-              <div className="space-y-4">
-                {edu.awards?.map((award, i) => (
-                  <div key={i} className="flex gap-2 text-xs text-secondary-grey">
-                    <Award className="w-4 h-4 text-accent/40 flex-shrink-0" />
-                    <span>{award}</span>
+              {/* 悬停背景图片 */}
+              {edu.hoverImage && (
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 bg-cover bg-center"
+                  style={{ backgroundImage: `url(${edu.hoverImage})` }}
+                />
+              )}
+
+              <div className="relative z-10">
+                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <GraduationCap className="w-16 h-16 text-navy" />
+                </div>
+                <h3 className="text-xl font-bold text-navy mb-1">{edu.school}</h3>
+                <p className="text-sm font-medium text-accent mb-4">{edu.degree}</p>
+                <p className="text-xs text-navy/40 mb-6 font-mono">{edu.period}</p>
+
+                <div className="space-y-4">
+                  {edu.awards?.map((award, i) => (
+                    <div key={i} className="flex gap-2 text-xs text-secondary-grey">
+                      <Award className="w-4 h-4 text-accent/40 flex-shrink-0" />
+                      <span>{award}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* 悬停时显示提示 */}
+                {edu.hoverImage && (
+                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="flex items-center gap-1.5 text-[10px] text-accent/70 font-medium">
+                      <Eye className="w-3 h-3" />
+                      <span>查看 {edu.hoverLabel}</span>
+                    </div>
                   </div>
-                ))}
+                )}
               </div>
             </motion.div>
           ))}

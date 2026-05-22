@@ -5,6 +5,12 @@ export interface Tag {
   type?: 'skill' | 'location' | 'date';
 }
 
+export interface DiagramImage {
+  src: string;
+  label: string;
+  caption?: string;
+}
+
 export interface Experience {
   id: string;
   period: string;
@@ -17,6 +23,9 @@ export interface Experience {
   fallbackImageSrc?: string;
   diagramContent?: React.ReactNode;
   liveDemoUrl?: string;
+  slideImages?: string[];   // 幻灯片图片路径数组（预渲染的 PDF 页图片）
+  /** 图表区：多张图片 + 说明文字，点击放大 */
+  diagramZone?: DiagramImage[];
 }
 
 export interface Honor {
