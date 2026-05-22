@@ -41,8 +41,8 @@ export default function Hero() {
           </h1>
 
           <div className="max-w-xl mb-12">
-            <p className="text-lg md:text-xl text-secondary-grey leading-relaxed font-kai opacity-90 text-balance">
-              "作为一名拥有计算机本科学历的复旦法学硕士，我不只停留在书面的法理研究。我对利用代码改变生活这件事充满激情，同时也把学习外语视为终身的浪漫与热爱。这种<span className="text-navy font-semibold">"法理 × 技术 × 语言"</span>的斜杠视角，让我能自由穿梭于底层逻辑与全球规则之间。基于对技术的信仰和对法律的敬畏，我热衷于探索AI技术并开发法律AI小产品，用理性思维去解决感性认识的需求。"
+            <p className="text-xl md:text-2xl text-secondary-grey leading-relaxed font-hand opacity-90 text-balance">
+              作为一名本科专业为计算机的法律硕士，我在<span className="underline decoration-accent decoration-2 underline-offset-4 font-semibold text-navy">复旦</span>"自由而无用"的氛围中成长为一个不满足于只研究 paperwork 的人，而是相信<span className="underline decoration-accent decoration-2 underline-offset-4 font-semibold text-navy">技术赋能法律</span>、代码改变生活。我很喜欢学外语，在我眼里，外语不仅是一个工具，而是文化的载体，是看世界的窗口。这种"<span className="underline decoration-accent decoration-2 underline-offset-4 font-semibold text-navy">法律—科技—语言</span>"的奇妙组合，让我能自由穿梭于逻辑、规则与文化多样性之间。我也始终相信，<span className="bg-accent/15 text-accent font-semibold px-1.5 rounded">这个时代乐于拥抱充满探索精神的年轻人！</span>
             </p>
           </div>
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Download, Mail, Phone, MessageSquare, Linkedin, ExternalLink } from 'lucide-react';
+import { Menu, X, ChevronDown, Download, Mail, Phone, MessageSquare, Linkedin, ExternalLink, FileText } from 'lucide-react';
 import { cn } from '../utils';
 
 const NAV_SECTIONS = [
@@ -14,6 +14,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const isDetailsPage = location.pathname === '/details';
@@ -101,20 +102,18 @@ export default function Navbar() {
                   
                   <div className="p-3 border-t border-navy/5">
                     <p className="text-xs font-semibold uppercase tracking-wider text-navy/40 mb-3">简历与跳转</p>
-                    <a 
-                      href="/assets/documents/resume.pdf" 
-                      target="_blank"
-                      rel="noreferrer"
-                      className="flex items-center gap-3 p-2 hover:bg-navy/5 rounded-lg transition-colors group"
+                    <button
+                      onClick={() => { setIsResumeOpen(true); setIsContactOpen(false); }}
+                      className="flex items-center gap-3 p-2 hover:bg-navy/5 rounded-lg transition-colors group w-full text-left"
                     >
                       <div className="w-8 h-8 rounded-full bg-navy/5 flex items-center justify-center">
                         <Download className="w-4 h-4" />
                       </div>
                       <div className="flex flex-col">
                         <span className="text-sm font-medium">查看简历 (PDF)</span>
-                        <span className="text-[10px] text-navy/40">最新更新 2026.04</span>
+                        <span className="text-[10px] text-navy/40">最新更新 2026.05</span>
                       </div>
-                    </a>
+                    </button>
                   </div>
 
                   <div className="p-3">
@@ -172,6 +171,53 @@ export default function Navbar() {
                 </button>
               ))}
             </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* PDF 简历全屏弹窗 */}
+      <AnimatePresence>
+        {isResumeOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-navy/80 backdrop-blur-sm flex flex-col"
+            onClick={() => setIsResumeOpen(false)}
+          >
+            {/* 顶部工具栏 */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              className="flex items-center justify-between px-6 py-4 bg-warm-white/95 backdrop-blur-md border-b border-navy/10"
+            >
+              <div className="flex items-center gap-3">
+                <FileText className="w-5 h-5 text-accent" />
+                <span className="text-sm font-medium text-navy">个人简历</span>
+              </div>
+              <button
+                onClick={() => setIsResumeOpen(false)}
+                className="p-2 rounded-full hover:bg-navy/10 transition-colors"
+              >
+                <X className="w-5 h-5 text-navy" />
+              </button>
+            </motion.div>
+
+            {/* PDF 渲染区域 */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.15 }}
+              className="flex-1 m-4 md:m-8 rounded-2xl overflow-hidden shadow-2xl bg-white"
+              onClick={e => e.stopPropagation()}
+            >
+              <iframe
+                src="/assets/documents/CV%20-%20CN%20-%202026.05.pdf"
+                className="w-full h-full border-0"
+                title="个人简历 PDF"
+              />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
