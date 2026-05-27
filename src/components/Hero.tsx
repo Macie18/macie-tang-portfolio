@@ -64,16 +64,34 @@ export default function Hero() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="order-1 md:order-2 relative aspect-[3/4] md:aspect-square lg:aspect-[4/5] overflow-hidden rounded-3xl group"
         >
+          {/* 主照片：电影级黑白，hover 转彩色 */}
           <img 
             src="/assets/images/profile.jpg" 
             alt="Macie Tang" 
-            className="w-full h-full object-cover grayscale brightness-[1.05] contrast-[1.1] transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+            className="w-full h-full object-cover photo-cinema-bw group-hover:scale-105"
             onError={(e) => {
-              // fallback to original if local image not found
               (e.target as HTMLImageElement).src = '/input_file_0.png';
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent opacity-60" />
+
+          {/* 侧逆光层：左暗（阴影面）→ 右透明，模拟伦勃朗光暗部深度 */}
+          <div
+            className="absolute inset-0 pointer-events-none transition-opacity duration-700 group-hover:opacity-0"
+            style={{
+              background: 'linear-gradient(108deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.08) 48%, transparent 72%)'
+            }}
+          />
+
+          {/* 轮廓勾边光：右侧逆光，银色细边 */}
+          <div
+            className="absolute inset-0 pointer-events-none transition-opacity duration-700 group-hover:opacity-0"
+            style={{
+              background: 'linear-gradient(255deg, rgba(230,230,230,0.09) 0%, transparent 32%)'
+            }}
+          />
+
+          {/* 底部信息卡渐变背景，彩色模式继续保留 */}
+          <div className="absolute inset-0 bg-gradient-to-t from-navy/55 via-navy/10 to-transparent" />
           
           <motion.div 
             initial={{ opacity: 0 }}

@@ -53,4 +53,16 @@
   .font-hand {
     font-family: var(--font-hand);
   }
+
+  /* ── 电影级摄影棚黑白肖像效果 ── */
+  /* 默认：高对比度、暗部沉、银盐质感，告别遗照灰 */
+  .photo-cinema-bw {
+    filter: grayscale(1) contrast(1.55) brightness(0.8) saturate(0);
+    transition: filter 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  /* Hover：彩色，对比度回归自然，轻微饱和度提升 */
+  .group:hover .photo-cinema-bw {
+    filter: grayscale(0) contrast(1.05) brightness(1.0) saturate(1.08);
+  }
 }
