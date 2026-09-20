@@ -72,14 +72,14 @@ export default function Hero() {
           initial={reduceMotion ? false : { opacity: 0, scale: 0.94, rotate: 1.5 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 0.95, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto w-full max-w-xl"
+          className="relative mx-auto w-full max-w-2xl"
         >
           <div className="absolute -inset-8 rounded-[3rem] bg-accent/10 blur-3xl" aria-hidden="true" />
-          <div className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/70 bg-navy shadow-[0_35px_100px_rgba(10,25,47,.2)]">
+          <div className="group relative aspect-[3/2] overflow-hidden rounded-[2rem] border border-white/70 bg-navy shadow-[0_35px_100px_rgba(10,25,47,.2)]">
             <img
-              src="/assets/images/profile.jpg"
+              src="/assets/images/profile.jpg?v=20260920-2"
               alt="唐美琪 Macie Tang"
-              className="photo-cinema-bw h-full w-full object-cover object-[52%_center] transition-transform duration-1000 group-hover:scale-[1.035]"
+              className="photo-cinema-bw h-full w-full object-cover object-center transition-transform duration-1000 group-hover:scale-[1.035]"
               fetchPriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#071326]/80 via-transparent to-transparent" />

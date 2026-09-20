@@ -160,18 +160,18 @@ export const PROJECTS: Experience[] = [
     id: 'xiangmian-classroom',
     eyebrow: 'CAREER JOURNEY · INTERACTIVE STORY',
     period: '2026.04 - 2026.05',
-    title: '奖学金唯一获得者 / 结业项目作者',
+    title: '奖学金获得者 / 结业项目作者',
     subtitle: '相勉课堂 ·《我的法嘉之旅》',
     location: '线上作品',
     description: [
-      '获相勉课堂奖学金，为本期唯一获得者。',
+      '获相勉课堂奖学金。',
       '以互动网页完成课程大作业，记录相勉课堂学习经历、法嘉职场体验与个人成长路径。',
       '独立组织照片、文字与交互叙事，将一次课程体验转化为可公开访问的数字作品。'
     ],
     tags: ['奖学金', '互动网页', '个人叙事', '职业发展'],
-    imageSrc: '/assets/images/xiangmian-scholarship.jpg?v=20260920',
-    imageLabel: '相勉课堂第十二期优秀学员奖学金',
-    imageNote: '本期唯一获得者 · 2026',
+    imageSrc: '/assets/images/xiangmian-completion-certificate.jpg',
+    imageLabel: '相勉课堂结业证书',
+    imageNote: '第十二期 · 2026.04 - 2026.05',
     liveDemoUrl: 'https://lawplus-career-journey.pages.dev/',
     documentUrl: '/assets/documents/xiangmian-classroom-certificate-score.pdf',
     documentLabel: '查看结业证书与评分表 PDF',
@@ -182,13 +182,13 @@ export const PROJECTS: Experience[] = [
         caption: '评分表注明：总得分最高的学员获得本期奖学金'
       },
       {
-        src: '/assets/images/xiangmian-completion-certificate.jpg',
-        label: '相勉课堂结业证书',
-        caption: '第十二期 · 2026.04 - 2026.05'
+        src: '/assets/images/xiangmian-scholarship.jpg?v=20260920',
+        label: '相勉课堂第十二期优秀学员奖学金',
+        caption: '奖学金 · 2026'
       }
     ],
     metrics: [
-      { value: '唯一', label: '奖学金获得者' },
+      { value: '奖学金', label: '课程学习成果' },
       { value: '100', label: '课程总评' }
     ]
   },
@@ -316,7 +316,7 @@ export const GLOBAL_GALLERY: GalleryItem[] = [
     src: '/assets/gallery/bucerius-exchange-group.jpg',
     kicker: 'BUCERIUS · EXCHANGE',
     title: '汉堡法学院交换',
-    caption: '2025 年在汉堡法学院交换时的大合照。那几个月里，课堂讨论和日常相处让我认识了来自不同国家的同学。'
+    caption: '2025 年在汉堡法学院交换时的大合照。那几个月里，课堂讨论和日常相处让我认识了来自不同国家的同学。这是我永远宝贵的回忆。'
   },
   {
     src: '/assets/gallery/foreign-business-meeting.jpg',

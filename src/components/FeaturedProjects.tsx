@@ -78,12 +78,11 @@ export default function FeaturedProjects() {
                     </div>
                     <iframe
                       src={item.liveUrl}
-                      title="Lawbor 产品网页预览"
-                      className="pointer-events-none h-full w-full border-0 pt-7"
+                      title="Lawbor 产品互动网页"
+                      className="h-full w-full border-0 pt-7"
                       loading="lazy"
-                      tabIndex={-1}
                     />
-                    <span className="absolute bottom-3 right-3 rounded-full bg-[#071326]/85 px-3 py-1.5 text-[9px] font-semibold text-white shadow-lg backdrop-blur-lg">实时网页预览</span>
+                    <span className="pointer-events-none absolute bottom-3 right-3 rounded-full bg-[#071326]/85 px-3 py-1.5 text-[9px] font-semibold text-white shadow-lg backdrop-blur-lg">可直接操作</span>
                   </div>
                 ) : (
                   <img
@@ -101,6 +100,11 @@ export default function FeaturedProjects() {
               <h3 className="mt-5 text-2xl font-semibold tracking-[-0.025em] text-white">{item.title}</h3>
               <p className="mt-3 text-sm leading-7 text-white/55">{item.description}</p>
               <p className="mt-6 border-t border-white/10 pt-5 text-xs font-medium text-white/80">{item.result}</p>
+              {item.liveUrl && (
+                <a href={item.liveUrl} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-[#aeb6ff] transition-colors hover:text-white">
+                  在新页面打开 <ArrowUpRight className="h-4 w-4" />
+                </a>
+              )}
               </>
             );
 
@@ -113,9 +117,9 @@ export default function FeaturedProjects() {
             };
 
             return item.liveUrl ? (
-              <motion.a key={item.index} {...motionProps} href={item.liveUrl} target="_blank" rel="noreferrer" aria-label="打开 Lawbor 在线产品">
+              <motion.div key={item.index} {...motionProps}>
                 {content}
-              </motion.a>
+              </motion.div>
             ) : (
               <motion.button key={item.index} {...motionProps} onClick={() => navigate(item.href)}>
                 {content}
