@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="t d">
+  <title id="t">IPO 尽调底稿占位图</title><desc id="d">可替换为匿名化清单或工作场景</desc>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#111b31"/><stop offset="1" stop-color="#173344"/></linearGradient></defs><rect width="1600" height="1000" rx="72" fill="url(#g)"/>
+  <g font-family="Arial, PingFang SC, sans-serif" fill="#fff"><text x="96" y="112" font-size="22" letter-spacing="7" fill="#6ed0ff">IPO DUE DILIGENCE / PLACEHOLDER</text><text x="96" y="207" font-size="62" font-weight="700">IPO 尽调底稿</text><text x="96" y="260" font-size="25" fill="#adc5d4">后续替换：匿名化问题清单、股权结构图或工作场景</text></g>
+  <g transform="translate(870 330) rotate(5)"><rect width="500" height="500" rx="28" fill="#fff" fill-opacity=".07" stroke="#fff" stroke-opacity=".16"/><g stroke="#fff" stroke-opacity=".25" stroke-width="12" stroke-linecap="round"><path d="M80 105h270"/><path d="M80 175h340"/><path d="M80 245h300"/><path d="M80 315h250"/></g><g fill="none" stroke="#6ed0ff" stroke-width="9"><rect x="70" y="375" width="48" height="48" rx="8"/><path d="m80 399 12 12 27-32"/></g></g>
+  <g font-family="Arial, PingFang SC, sans-serif" transform="translate(100 420)"><text font-size="120" font-weight="700" fill="#fff">20+</text><text y="62" x="250" font-size="30" fill="#adc5d4">份合同审查</text><text y="175" font-size="31" fill="#fff">合同条款</text><text y="240" font-size="31" fill="#fff">股权穿透</text><text y="305" font-size="31" fill="#fff">公开信息核查</text></g>
+  <text x="96" y="912" font-family="Arial, PingFang SC, sans-serif" font-size="24" fill="#adc5d4">REPLACE FILE · allbright-ipo-diligence.svg</text>
+</svg>

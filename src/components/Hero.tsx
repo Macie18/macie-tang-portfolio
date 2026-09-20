@@ -1,107 +1,101 @@
 import React from 'react';
-import { motion } from 'motion/react';
-import { useNavigate } from 'react-router-dom';
-import { ChevronDown } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
+import { ArrowDownRight, ArrowUpRight, Download } from 'lucide-react';
+
+const SNAPSHOTS = [
+  { value: '107', label: '份合同结构化处理' },
+  { value: '87', label: '份法律 AI 测试案例' },
+  { value: '40+', label: '件公益诉讼案件' },
+];
 
 export default function Hero() {
-  const navigate = useNavigate();
+  const reduceMotion = useReducedMotion();
+
+  const reveal = (delay = 0) => ({
+    initial: reduceMotion ? false : { opacity: 0, y: 24 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.72, delay, ease: [0.16, 1, 0.3, 1] as const },
+  });
 
   return (
-    <section id="hero" className="min-h-screen flex items-center pt-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 md:gap-24 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="order-2 md:order-1"
-        >
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="flex items-center gap-2 mb-6"
-          >
-            <span className="h-px w-8 bg-navy/20" />
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-navy/60">Legal AI & Compliance</span>
-          </motion.div>
+    <section id="hero" className="relative min-h-screen overflow-hidden pt-28 md:pt-36">
+      <div className="hero-aurora" aria-hidden="true" />
+      <div className="hero-grid" aria-hidden="true" />
 
-          {/* 标题：纯汉字格式，分行排列 */}
-          <h1 className="font-bold leading-[1.05] mb-12 text-navy tracking-tighter">
-            <span className="block text-5xl md:text-6xl lg:text-7xl mb-2">跨越法理与代码</span>
-            <span className="block text-5xl md:text-6xl lg:text-7xl mb-2">构筑真实世界的</span>
-            <span className="relative inline-block">
-              <span className="text-6xl md:text-7xl lg:text-9xl font-serif font-bold text-accent">合规</span>
-              <motion.span 
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ delay: 1, duration: 0.8 }}
-                className="absolute -bottom-2 left-0 h-2 bg-accent/20 rounded-full"
-              />
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-14 px-6 pb-20 lg:grid-cols-[1.08fr_.92fr] lg:gap-20 lg:pb-28">
+        <div>
+          <motion.div {...reveal(0.06)} className="mb-8 flex items-center gap-3">
+            <span className="h-px w-10 bg-accent" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.3em] text-accent">
+              Legal AI · Compliance · Product
             </span>
-          </h1>
+          </motion.div>
 
-          <div className="max-w-xl mb-12">
-            <p className="text-xl md:text-2xl text-secondary-grey leading-relaxed font-hand opacity-90 text-balance">
-              作为一名本科专业为计算机的法律硕士，我在<span className="underline decoration-accent decoration-2 underline-offset-4 font-semibold text-navy">复旦</span>"自由而无用"的氛围中成长为一个不满足于只研究 paperwork 的人，而是相信<span className="underline decoration-accent decoration-2 underline-offset-4 font-semibold text-navy">技术赋能法律</span>、代码改变生活。我很喜欢学外语，在我眼里，外语不仅是一个工具，而是文化的载体，是看世界的窗口。这种"<span className="underline decoration-accent decoration-2 underline-offset-4 font-semibold text-navy">法律—科技—语言</span>"的奇妙组合，让我能自由穿梭于逻辑、规则与文化多样性之间。我也始终相信，<span className="bg-accent/15 text-accent font-semibold px-1.5 rounded">这个时代乐于拥抱充满探索精神的年轻人！</span>
-            </p>
-          </div>
+          <motion.h1 {...reveal(0.12)} className="max-w-4xl text-[clamp(3.35rem,7vw,6.9rem)] font-semibold leading-[.94] tracking-[-0.065em] text-navy">
+            把法律问题
+            <span className="mt-2 block">做成可验证的</span>
+            <span className="text-gradient mt-2 block">系统</span>
+          </motion.h1>
 
-          {/* 直接跳转到详情页的按钮 */}
-          <div className="flex flex-wrap gap-4">
-            <button 
-              onClick={() => navigate('/details')}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-navy text-warm-white rounded-full font-medium hover:bg-navy/90 hover:scale-105 active:scale-95 transition-all shadow-lg hover:shadow-navy/20"
+          <motion.p {...reveal(0.2)} className="mt-9 max-w-2xl text-base leading-8 text-secondary-grey md:text-lg md:leading-9">
+            我本科就读计算机科学与技术，现于复旦大学攻读法律硕士。我的实践集中在法律 AI、数据合规和知识工程：做过法律大模型测试、合同信息抽取、知识图谱标注，也独立开发过劳动者权益产品。我关心的不只是技术能做什么，更关心它如何进入真实的法律工作流程。
+          </motion.p>
+
+          <motion.div {...reveal(0.28)} className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <a href="#featured" className="button-primary group">
+              查看代表项目
+              <ArrowDownRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+            </a>
+            <a
+              href="/assets/documents/CV%20-%20CN%20-%202026.10.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="button-secondary group"
             >
-              了解经历
-              <ChevronDown className="w-5 h-5" />
-            </button>
-          </div>
-        </motion.div>
+              <Download className="h-4 w-4" />
+              查看最新简历
+              <ArrowUpRight className="h-4 w-4 opacity-50 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          </motion.div>
+
+          <motion.div {...reveal(0.36)} className="mt-12 grid max-w-2xl grid-cols-3 gap-3 border-t border-navy/10 pt-7">
+            {SNAPSHOTS.map(item => (
+              <div key={item.label}>
+                <p className="font-serif text-2xl font-semibold text-navy md:text-3xl">{item.value}</p>
+                <p className="mt-1 text-[10px] leading-4 text-navy/45 md:text-xs">{item.label}</p>
+              </div>
+            ))}
+          </motion.div>
+        </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotate: 2 }}
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.94, rotate: 1.5 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="order-1 md:order-2 relative aspect-[3/4] md:aspect-square lg:aspect-[4/5] overflow-hidden rounded-3xl group"
+          transition={{ duration: 0.95, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mx-auto w-full max-w-xl"
         >
-          {/* 主照片：电影级黑白，hover 转彩色 */}
-          <img 
-            src="/assets/images/profile.jpg" 
-            alt="Macie Tang" 
-            className="w-full h-full object-cover photo-cinema-bw group-hover:scale-105"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = '/input_file_0.png';
-            }}
-          />
-
-          {/* 侧逆光层：左暗（阴影面）→ 右透明，模拟伦勃朗光暗部深度 */}
-          <div
-            className="absolute inset-0 pointer-events-none transition-opacity duration-700 group-hover:opacity-0"
-            style={{
-              background: 'linear-gradient(108deg, rgba(0,0,0,0.38) 0%, rgba(0,0,0,0.08) 48%, transparent 72%)'
-            }}
-          />
-
-          {/* 轮廓勾边光：右侧逆光，银色细边 */}
-          <div
-            className="absolute inset-0 pointer-events-none transition-opacity duration-700 group-hover:opacity-0"
-            style={{
-              background: 'linear-gradient(255deg, rgba(230,230,230,0.09) 0%, transparent 32%)'
-            }}
-          />
-
-          {/* 底部信息卡渐变背景，彩色模式继续保留 */}
-          <div className="absolute inset-0 bg-gradient-to-t from-navy/55 via-navy/10 to-transparent" />
-          
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="absolute bottom-6 left-6 right-6 p-6 bg-warm-white/10 backdrop-blur-md border border-warm-white/20 rounded-2xl text-warm-white"
-          >
-            <p className="text-xs uppercase tracking-widest font-semibold mb-1 opacity-80">Current Status</p>
-            <p className="text-sm font-medium">Fudan University Law School • 2024–2027</p>
-          </motion.div>
+          <div className="absolute -inset-8 rounded-[3rem] bg-accent/10 blur-3xl" aria-hidden="true" />
+          <div className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-white/70 bg-navy shadow-[0_35px_100px_rgba(10,25,47,.2)]">
+            <img
+              src="/assets/images/profile.jpg"
+              alt="唐美琪 Macie Tang"
+              className="photo-cinema-bw h-full w-full object-cover object-[52%_center] transition-transform duration-1000 group-hover:scale-[1.035]"
+              fetchPriority="high"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#071326]/80 via-transparent to-transparent" />
+            <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/15 bg-[#071326]/55 p-5 text-white backdrop-blur-xl md:inset-x-7 md:bottom-7 md:p-6">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/50">Current focus</p>
+                  <p className="mt-2 text-sm font-medium md:text-base">法律科技产品 · 数据合规 · 知识工程</p>
+                </div>
+                <span className="pulse-dot" aria-label="当前在读" />
+              </div>
+            </div>
+          </div>
+          <div className="absolute -right-3 top-12 rounded-full border border-white/70 bg-white/70 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.2em] text-navy shadow-lg backdrop-blur-xl md:-right-8">
+            Fudan · 2024—2027
+          </div>
         </motion.div>
       </div>
     </section>

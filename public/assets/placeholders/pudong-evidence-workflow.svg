@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="t d">
+  <title id="t">浦东检察院实习证明占位图</title><desc id="d">后续替换为实习证明扫描件或清晰照片</desc>
+  <defs><linearGradient id="g" x1="0" x2="1" y2="1"><stop stop-color="#0d1c31"/><stop offset="1" stop-color="#123c4c"/></linearGradient><pattern id="p" width="60" height="60" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="#fff" fill-opacity=".1"/></pattern></defs>
+  <rect width="1600" height="1000" rx="72" fill="url(#g)"/><rect width="1600" height="1000" rx="72" fill="url(#p)"/>
+  <g font-family="Arial, PingFang SC, sans-serif" fill="#fff"><text x="96" y="112" font-size="22" letter-spacing="7" fill="#78e4d5">PUBLIC INTEREST / DOCUMENT PLACEHOLDER</text><text x="96" y="207" font-size="62" font-weight="700">浦东新区人民检察院实习证明</text><text x="96" y="260" font-size="25" fill="#abc9cd">后续替换：实习证明扫描件或清晰照片</text></g>
+  <g transform="translate(470 350)" font-family="Arial, PingFang SC, sans-serif"><rect width="660" height="470" rx="28" fill="#f6f8f8"/><path d="M70 108h520M70 172h520M70 236h410M70 350h520" stroke="#123c4c" stroke-opacity=".18" stroke-width="12" stroke-linecap="round"/><circle cx="510" cy="344" r="78" fill="none" stroke="#e45f66" stroke-opacity=".75" stroke-width="9"/><text x="70" y="68" fill="#123c4c" font-size="35" font-weight="700">实习证明</text><text x="70" y="422" fill="#123c4c" fill-opacity=".55" font-size="22">上传前请检查姓名之外的敏感信息</text></g>
+  <text x="96" y="912" font-family="Arial, PingFang SC, sans-serif" font-size="24" fill="#abc9cd">REPLACE FILE · pudong-evidence-workflow.svg</text>
+</svg>

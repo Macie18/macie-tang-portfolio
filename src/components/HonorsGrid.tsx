@@ -1,180 +1,150 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { X, Search, GraduationCap, Award, Eye } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+import { Award, BookOpen, ExternalLink, Eye, GraduationCap, X } from 'lucide-react';
+import { EDUCATION, HONORS } from '../constants';
 import { Honor } from '../types';
-import { HONORS, EDUCATION } from '../constants';
-import { cn } from '../utils';
 
 export default function HonorsGrid() {
   const [selectedHonor, setSelectedHonor] = useState<Honor | null>(null);
+  const usesPdfPreview = Boolean(selectedHonor?.documentSrc && (selectedHonor.documentPage || 1) > 1);
+
+  useEffect(() => {
+    if (!selectedHonor) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setSelectedHonor(null);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [selectedHonor]);
 
   return (
-    <section id="education" className="py-32">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-24 flex flex-col md:flex-row justify-between items-end gap-12">
-          <div className="max-w-xl">
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-navy mb-6">教育背景与荣誉</h2>
-            <p className="text-secondary-grey">
-              跨学科的背景不仅是两个领域的叠加，更是思维模式的深度。在法学研究与技术实践中，我始终追求卓越。
+    <section id="education" className="scroll-mt-20 py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6">
+        <div className="mb-14 flex flex-col justify-between gap-8 md:mb-20 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <p className="section-kicker">Education & selected honors</p>
+            <h2 className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-navy md:text-6xl">教育背景与精选荣誉</h2>
+            <p className="mt-6 max-w-xl text-base leading-8 text-secondary-grey">
+              计算机训练让我习惯拆解系统，法律训练让我持续追问规则、责任与证据。这里保留与当前方向最相关的教育和成果。
             </p>
           </div>
-          
-          <div className="flex gap-4">
-            <div className="flex flex-col items-end">
-              <span className="text-3xl font-bold text-navy">Fudan</span>
-              <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-accent">Master of Laws</span>
-            </div>
-            <div className="w-px h-12 bg-navy/10" />
-            <div className="flex flex-col items-end">
-              <span className="text-3xl font-bold text-navy">JNU</span>
-              <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-accent">B.S. CS</span>
-            </div>
+          <div className="flex items-center gap-4 text-right">
+            <div><p className="text-2xl font-bold text-navy">Fudan</p><p className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent">Master of Laws</p></div>
+            <div className="h-10 w-px bg-navy/10" />
+            <div><p className="text-2xl font-bold text-navy">JNU</p><p className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent">B.S. Computer Science</p></div>
           </div>
         </div>
 
-        {/* Education Section */}
-        <div className="grid md:grid-cols-3 gap-8 mb-24">
-          {EDUCATION.map((edu, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
+        <div className="grid gap-5 md:grid-cols-3">
+          {EDUCATION.map((edu, index) => (
+            <motion.article
+              key={edu.school}
+              initial={{ opacity: 1, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="p-8 bg-warm-white-soft rounded-3xl border border-navy/5 shadow-sm hover:shadow-md transition-all relative overflow-hidden group"
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className="education-card group"
             >
-              {/* 悬停背景图片 */}
-              {edu.hoverImage && (
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 bg-cover bg-center"
-                  style={{ backgroundImage: `url(${edu.hoverImage})` }}
-                />
-              )}
-
-              <div className="relative z-10">
-                <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <GraduationCap className="w-16 h-16 text-navy" />
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-navy">{edu.school}</h3>
+                  <p className="mt-1 text-sm font-medium text-accent">{edu.degree}</p>
                 </div>
-                <h3 className="text-xl font-bold text-navy mb-1">{edu.school}</h3>
-                <p className="text-sm font-medium text-accent mb-4">{edu.degree}</p>
-                <p className="text-xs text-navy/40 mb-6 font-mono">{edu.period}</p>
-
-                <div className="space-y-4">
-                  {edu.awards?.map((award, i) => (
-                    <div key={i} className="flex gap-2 text-xs text-secondary-grey">
-                      <Award className="w-4 h-4 text-accent/40 flex-shrink-0" />
-                      <span>{award}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* 悬停时显示提示 */}
-                {edu.hoverImage && (
-                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="flex items-center gap-1.5 text-[10px] text-accent/70 font-medium">
-                      <Eye className="w-3 h-3" />
-                      <span>查看 {edu.hoverLabel}</span>
-                    </div>
-                  </div>
-                )}
+                <GraduationCap className="h-8 w-8 text-navy/10 transition-colors group-hover:text-accent/25" />
               </div>
-            </motion.div>
+              <p className="mt-5 font-mono text-xs text-navy/40">{edu.period}</p>
+              <div className="mt-7 space-y-3">
+                {edu.awards.map(award => (
+                  <p key={award} className="flex items-start gap-2 text-xs leading-5 text-secondary-grey">
+                    <Award className="mt-0.5 h-3.5 w-3.5 flex-none text-accent/55" /> {award}
+                  </p>
+                ))}
+              </div>
+              <div className="mt-7 flex flex-wrap gap-2">
+                {edu.courses.map(course => <span key={course} className="mini-pill">{course}</span>)}
+              </div>
+            </motion.article>
           ))}
         </div>
 
-        {/* Honors Wall */}
-        <h3 className="text-2xl font-bold text-navy mb-12 flex items-center gap-3">
-          荣誉资质 <span className="h-px flex-1 bg-navy/10" />
-        </h3>
+        <div className="mt-20 flex items-center gap-4 md:mt-28">
+          <h3 className="text-2xl font-semibold text-navy">精选荣誉与发表</h3>
+          <span className="h-px flex-1 bg-navy/10" />
+        </div>
+        <p className="mt-3 max-w-2xl text-sm leading-7 text-secondary-grey">
+          为保护隐私，已移除含身份证号、准考证号等敏感字段的原始证书墙，只展示与专业方向相关的精选项目。
+        </p>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {HONORS.map((honor, idx) => (
-            <motion.div
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {HONORS.map((honor, index) => (
+            <motion.button
               key={honor.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
+              initial={{ opacity: 1, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.55, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
               onClick={() => setSelectedHonor(honor)}
-              className="group relative aspect-square cursor-zoom-in overflow-hidden rounded-2xl bg-warm-white-soft"
+              className="honor-card group text-left"
             >
-              <img 
-                src={honor.imageSrc} 
-                alt={honor.title}
-                className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 text-warm-white">
-                <Search className="w-6 h-6 mb-2" />
-                <p className="text-[10px] font-bold uppercase tracking-wider line-clamp-2">{honor.title}</p>
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-[#0d1830]">
+                {honor.imageSrc ? (
+                  <img
+                    src={honor.imageSrc}
+                    alt=""
+                    className={`h-full w-full transition-all duration-700 group-hover:scale-[1.025] ${honor.imageFit === 'contain' ? 'bg-[#eef1f7] object-contain p-4' : 'object-cover'}`}
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center"><BookOpen className="h-10 w-10 text-white/25" /></div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#071326]/85 via-transparent to-transparent" />
+                <span className="absolute bottom-4 right-4 flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-black/25 text-white backdrop-blur-lg">
+                  <Eye className="h-4 w-4" />
+                </span>
+                {honor.documentSrc && <span className="absolute left-4 top-4 rounded-full border border-white/15 bg-[#071326]/75 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-lg">PDF 预览</span>}
+                {honor.placeholder && <span className="absolute left-4 top-4 rounded-full bg-white/10 px-3 py-1 text-[9px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-lg">待补素材</span>}
               </div>
-            </motion.div>
+              <div className="px-1 pb-2 pt-5">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent">{honor.date || 'Selected'}</p>
+                <h4 className="mt-3 text-base font-semibold leading-6 text-navy">{honor.title}</h4>
+                {honor.issuer && <p className="mt-2 text-xs leading-5 text-navy/45">{honor.issuer}</p>}
+              </div>
+            </motion.button>
           ))}
         </div>
       </div>
 
-      {/* Lightbox */}
       <AnimatePresence>
         {selectedHonor && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] flex items-center justify-center p-6 md:p-12"
-          >
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedHonor(null)}
-              className="absolute inset-0 bg-navy/95 backdrop-blur-md"
-            />
-            
-            <motion.div 
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              className="relative w-full max-w-4xl bg-warm-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
-            >
-              <div className="md:w-3/5 aspect-square md:aspect-auto">
-                <img 
-                  src={selectedHonor.imageSrc} 
-                  alt={selectedHonor.title}
-                  className="w-full h-full object-contain bg-neutral-900"
-                  referrerPolicy="no-referrer"
-                />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[80] flex items-center justify-center p-4 md:p-10" role="dialog" aria-modal="true" aria-label={selectedHonor.title}>
+            <button className="absolute inset-0 bg-[#071326]/90 backdrop-blur-xl" onClick={() => setSelectedHonor(null)} aria-label="关闭荣誉预览" />
+            <motion.div initial={{ opacity: 0, y: 20, scale: 0.97 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.97 }} className="relative z-10 grid max-h-[90vh] w-full max-w-5xl overflow-auto rounded-[2rem] bg-[#f8f9fc] shadow-2xl md:grid-cols-[1.2fr_.8fr]">
+              <div className={usesPdfPreview ? 'min-h-[520px] bg-white md:min-h-[680px]' : 'flex min-h-80 items-center bg-[#071326] p-5 md:min-h-[600px] md:p-10'}>
+                {selectedHonor.imageSrc && !usesPdfPreview ? (
+                  <img src={selectedHonor.imageSrc} alt={selectedHonor.title} className="h-full max-h-[70vh] w-full object-contain" />
+                ) : selectedHonor.documentSrc ? (
+                  <iframe
+                    src={`${selectedHonor.documentSrc}#page=${selectedHonor.documentPage || 1}&zoom=page-width`}
+                    title={`${selectedHonor.title}原始文件`}
+                    className="h-full min-h-[520px] w-full border-0 md:min-h-[680px]"
+                  />
+                ) : null}
               </div>
-              
-              <div className="md:w-2/5 p-8 md:p-12 flex flex-col justify-center">
-                <button 
-                  onClick={() => setSelectedHonor(null)}
-                  className="absolute top-6 right-6 p-2 hover:bg-navy/5 rounded-full transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-
-                <h3 className="text-2xl md:text-3xl font-bold text-navy mb-4 leading-tight">
-                  {selectedHonor.title}
-                </h3>
-                
-                {selectedHonor.issuer && (
-                  <p className="text-sm font-medium text-accent mb-2">{selectedHonor.issuer}</p>
+              <div className="relative flex flex-col justify-center p-8 md:p-12">
+                <button onClick={() => setSelectedHonor(null)} className="absolute right-5 top-5 rounded-full p-2 text-navy transition-colors hover:bg-navy/5" aria-label="关闭荣誉预览"><X className="h-5 w-5" /></button>
+                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-accent">{selectedHonor.date || 'Selected honor'}</p>
+                <h3 className="mt-5 text-2xl font-semibold leading-tight text-navy md:text-3xl">{selectedHonor.title}</h3>
+                {selectedHonor.issuer && <p className="mt-4 text-sm font-medium text-navy/50">{selectedHonor.issuer}</p>}
+                {selectedHonor.description && <p className="mt-8 border-l-2 border-accent/30 pl-5 text-sm leading-7 text-secondary-grey">{selectedHonor.description}</p>}
+                {selectedHonor.documentSrc && (
+                  <a
+                    href={`${selectedHonor.documentSrc}#page=${selectedHonor.documentPage || 1}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-8 inline-flex w-fit items-center gap-2 text-sm font-semibold text-navy underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent"
+                  >
+                    在新窗口打开原始 PDF <ExternalLink className="h-4 w-4" />
+                  </a>
                 )}
-                
-                <p className="text-xs text-navy/40 font-mono mb-8">{selectedHonor.date || 'Received'}</p>
-                
-                {selectedHonor.description && (
-                  <p className="text-secondary-grey leading-relaxed italic text-sm border-l-2 border-navy/10 pl-6">
-                    {selectedHonor.description}
-                  </p>
-                )}
-
-                <div className="mt-12 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full border border-navy/10 flex items-center justify-center">
-                    <Award className="w-5 h-5 text-accent" />
-                  </div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-navy/40">Official Certification</span>
-                </div>
               </div>
             </motion.div>
           </motion.div>

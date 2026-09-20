@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { MapPin, Calendar, ChevronLeft, ChevronRight, Maximize2, ImageIcon } from 'lucide-react';
+import { MapPin, Calendar, ChevronLeft, ChevronRight, Maximize2, ExternalLink } from 'lucide-react';
 import { Experience, DiagramImage } from '../types';
 import { cn } from '../utils';
 
@@ -12,19 +12,20 @@ interface TimelineProps {
 
 export default function Timeline({ items, id, title }: TimelineProps) {
   return (
-    <section id={id} className="py-32">
+    <section id={id} className="scroll-mt-20 py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 1, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-20 text-center md:text-left"
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-16 text-center md:mb-20 md:text-left"
         >
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-navy mb-4">{title}</h2>
           <div className="h-1 w-20 bg-navy/10 rounded-full md:mx-0 mx-auto" />
         </motion.div>
 
-        <div className="space-y-32">
+        <div className="space-y-24 md:space-y-32">
           {items.map((item, index) => (
             <TimelineItem 
               key={item.id} 
@@ -57,8 +58,8 @@ function DiagramGallery({ images }: { images: DiagramImage[] }) {
               className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="absolute bottom-0 left-0 right-0 p-2 translate-y-full group-hover:translate-y-0 transition-transform">
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/75 via-transparent to-transparent transition-opacity" />
+            <div className="absolute bottom-0 left-0 right-0 p-3">
               <p className="text-[10px] font-bold text-white uppercase tracking-wider leading-tight">{img.label}</p>
             </div>
           </button>
@@ -96,7 +97,8 @@ function DiagramGallery({ images }: { images: DiagramImage[] }) {
               </div>
               <button
                 onClick={() => setLightbox(null)}
-                className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white backdrop-blur-sm transition-colors"
+              className="absolute -top-3 -right-3 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white backdrop-blur-sm transition-colors"
+              aria-label="关闭图片预览"
               >
                 <ChevronRight className="w-5 h-5" />
               </button>
@@ -105,6 +107,30 @@ function DiagramGallery({ images }: { images: DiagramImage[] }) {
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+function CompactLivePreview({ url, title }: { url: string; title: string }) {
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+      className="group mt-7 block overflow-hidden rounded-2xl border border-navy/10 bg-white shadow-[0_18px_45px_rgba(10,25,47,.08)] transition-all duration-500 hover:-translate-y-1 hover:border-accent/25"
+      aria-label={`打开 ${title} 在线网页`}
+    >
+      <div className="flex h-9 items-center gap-1.5 border-b border-neutral-200 bg-[#f2f3f6] px-3">
+        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+        <span className="ml-3 min-w-0 flex-1 truncate rounded-md bg-white px-3 py-1 font-mono text-[9px] text-black/35">{url}</span>
+        <ExternalLink className="h-3.5 w-3.5 text-navy/35 transition-colors group-hover:text-accent" />
+      </div>
+      <div className="relative h-56 bg-white md:h-64">
+        <iframe src={url} title={`${title} 网页预览`} className="pointer-events-none h-full w-full border-0" loading="lazy" tabIndex={-1} />
+        <span className="absolute bottom-3 right-3 rounded-full bg-[#071326]/85 px-3 py-1.5 text-[9px] font-semibold text-white shadow-lg backdrop-blur-lg">实时网页预览</span>
+      </div>
+    </a>
   );
 }
 
@@ -122,10 +148,11 @@ function SlideViewer({ slides }: { slides: string[] }) {
         {/* 顶部标题栏 */}
         <div className="h-9 flex items-center justify-between px-4 bg-[#16213e] border-b border-white/10 flex-shrink-0">
           <span className="text-[11px] font-semibold text-white/50 tracking-wider uppercase">美团不美 · 小城杯答辩 PPT</span>
-          <button
-            onClick={() => setLightbox(true)}
+            <button
+              onClick={() => setLightbox(true)}
             className="p-1 hover:bg-white/10 rounded transition-colors text-white/40 hover:text-white/80"
-            title="全屏查看"
+              title="全屏查看"
+              aria-label="全屏查看幻灯片"
           >
             <Maximize2 className="w-3.5 h-3.5" />
           </button>
@@ -145,7 +172,8 @@ function SlideViewer({ slides }: { slides: string[] }) {
           {current > 0 && (
             <button
               onClick={prev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all backdrop-blur-sm"
+                className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all backdrop-blur-sm"
+                aria-label="上一张幻灯片"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
@@ -153,7 +181,8 @@ function SlideViewer({ slides }: { slides: string[] }) {
           {current < slides.length - 1 && (
             <button
               onClick={next}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all backdrop-blur-sm"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all backdrop-blur-sm"
+                aria-label="下一张幻灯片"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -170,9 +199,10 @@ function SlideViewer({ slides }: { slides: string[] }) {
                 "flex-shrink-0 h-10 rounded overflow-hidden border-2 transition-all",
                 i === current ? "border-accent scale-110" : "border-transparent opacity-50 hover:opacity-100"
               )}
-              style={{ width: `${10 * (16/9)}px` }}
+              style={{ width: '64px' }}
+              aria-label={`查看第 ${i + 1} 张幻灯片`}
             >
-              <img src={src} alt={`缩略图 ${i + 1}`} className="w-full h-full object-cover" draggable={false} />
+              <img src={src} alt="" className="w-full h-full object-cover" draggable={false} loading="lazy" />
             </button>
           ))}
         </div>
@@ -196,12 +226,12 @@ function SlideViewer({ slides }: { slides: string[] }) {
               className="w-full rounded-lg shadow-2xl"
             />
             {current > 0 && (
-              <button onClick={prev} className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all">
+              <button onClick={prev} className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all" aria-label="上一张幻灯片">
                 <ChevronLeft className="w-7 h-7" />
               </button>
             )}
             {current < slides.length - 1 && (
-              <button onClick={next} className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all">
+              <button onClick={next} className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-all" aria-label="下一张幻灯片">
                 <ChevronRight className="w-7 h-7" />
               </button>
             )}
@@ -219,19 +249,43 @@ function TimelineItem({ item, imageRight }: { item: Experience; imageRight: bool
       
       {/* 图片/幻灯片区域 */}
       <motion.div 
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 1, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10%" }}
+        viewport={{ once: true, amount: 0.16 }}
+        transition={{ duration: 0.68, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
           "relative w-full rounded-3xl overflow-hidden bg-warm-white-soft shadow-2xl border border-navy/5",
           imageRight ? "lg:order-2" : "lg:order-1",
-          item.slideImages ? "aspect-video" : "aspect-[4/3]"
+          item.slideImages ? "aspect-video" : "aspect-[16/10]"
         )}
       >
         {item.slideImages ? (
           <SlideViewer slides={item.slideImages} />
+        ) : item.imageSrc ? (
+          <div className="group relative h-full w-full">
+            <img
+              src={item.imageSrc}
+              alt={item.imageLabel || item.title}
+              className={cn(
+                'h-full w-full transition-transform duration-700 group-hover:scale-[1.025]',
+                item.imageFit === 'contain' ? 'bg-[#eef1f7] object-contain p-5' : 'object-cover'
+              )}
+            />
+            {(item.imageLabel || item.imageNote) && (
+              <div className="absolute inset-x-4 bottom-4 rounded-2xl border border-white/15 bg-[#071326]/65 p-4 text-white backdrop-blur-xl">
+                {item.imageLabel && <p className="text-sm font-semibold">{item.imageLabel}</p>}
+                {item.imageNote && <p className="mt-1 text-[10px] tracking-wide text-white/55">{item.imageNote}</p>}
+              </div>
+            )}
+          </div>
         ) : item.liveDemoUrl ? (
-          <div className="w-full h-full flex flex-col bg-[#F5F5F7]">
+          <a
+            href={item.liveDemoUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="group relative flex h-full w-full flex-col bg-[#F5F5F7]"
+            aria-label={`打开 ${item.title} 在线产品`}
+          >
             <div className="h-10 bg-neutral-100 flex items-center px-4 gap-2 border-b border-neutral-200">
               <div className="flex gap-1.5">
                 <div className="w-3 h-3 rounded-full bg-[#FF5F57] shadow-inner" />
@@ -242,27 +296,19 @@ function TimelineItem({ item, imageRight }: { item: Experience; imageRight: bool
                 {item.liveDemoUrl}
               </div>
             </div>
-            <div className="flex-1 w-full bg-white relative overflow-hidden">
+            <div className="relative w-full flex-1 overflow-hidden bg-white">
               <iframe 
                 src={item.liveDemoUrl} 
-                className="w-full h-full border-none"
-                title={item.title}
+                className="pointer-events-none h-full w-full border-none"
+                title={`${item.title} 网页预览`}
                 loading="lazy"
+                tabIndex={-1}
               />
             </div>
-          </div>
-        ) : item.imageSrc ? (
-          <img 
-            src={item.imageSrc} 
-            alt={item.title} 
-            className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-            referrerPolicy="no-referrer"
-            onError={(e) => {
-              if (item.fallbackImageSrc) {
-                (e.target as HTMLImageElement).src = item.fallbackImageSrc;
-              }
-            }}
-          />
+            <span className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-[#071326]/85 px-4 py-2 text-xs font-semibold text-white shadow-xl backdrop-blur-xl transition-transform duration-300 group-hover:-translate-y-1">
+              打开 Lawbor <ExternalLink className="h-3.5 w-3.5" />
+            </span>
+          </a>
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-navy/5">
             <span className="text-navy/20 font-serif italic text-4xl">Visual Representation</span>
@@ -272,21 +318,23 @@ function TimelineItem({ item, imageRight }: { item: Experience; imageRight: bool
 
       {/* 文字区域 */}
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 1, y: 14 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-10%" }}
+        viewport={{ once: true, amount: 0.16 }}
+        transition={{ duration: 0.68, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
         className={cn(
           "flex flex-col justify-center",
           imageRight ? "lg:order-1" : "lg:order-2"
         )}
       >
         <div className="mb-8">
+          {item.eyebrow && <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.25em] text-accent">{item.eyebrow}</p>}
           <span className="px-5 py-2 bg-pill-bg text-accent rounded-full text-xs font-bold uppercase tracking-[0.2em]">
             {item.period}
           </span>
         </div>
 
-        <h3 className="text-4xl md:text-5xl font-bold text-navy mb-2 tracking-tight leading-tight">{item.title}</h3>
+        <h3 className="text-3xl md:text-5xl font-bold text-navy mb-2 tracking-[-0.035em] leading-tight">{item.title}</h3>
         <p className="text-xl font-medium text-navy/60 mb-8">{item.subtitle}</p>
 
         <div className="flex flex-wrap gap-x-6 gap-y-2 mb-10 text-sm text-secondary-grey">
@@ -300,7 +348,7 @@ function TimelineItem({ item, imageRight }: { item: Experience; imageRight: bool
           </div>
         </div>
 
-        <ul className="space-y-5 mb-12 max-w-xl">
+        <ul className="space-y-4 mb-9 max-w-xl">
           {item.description.map((point, i) => (
             <li key={i} className="flex gap-4 text-base leading-relaxed text-secondary-grey">
               <div className="w-1.5 h-1.5 rounded-full bg-accent/40 mt-2.5 flex-shrink-0" />
@@ -308,6 +356,17 @@ function TimelineItem({ item, imageRight }: { item: Experience; imageRight: bool
             </li>
           ))}
         </ul>
+
+        {item.metrics && item.metrics.length > 0 && (
+          <div className="mb-8 grid grid-cols-3 gap-3">
+            {item.metrics.map(metric => (
+              <div key={metric.label} className="rounded-2xl border border-navy/8 bg-white/70 p-4">
+                <p className="font-serif text-2xl font-semibold text-navy">{metric.value}</p>
+                <p className="mt-1 text-[10px] leading-4 text-navy/45">{metric.label}</p>
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="flex flex-wrap gap-3">
           {item.tags.map(tag => (
@@ -317,8 +376,34 @@ function TimelineItem({ item, imageRight }: { item: Experience; imageRight: bool
           ))}
         </div>
 
+        {item.liveDemoUrl && (
+          <a
+            href={item.liveDemoUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-7 inline-flex w-fit items-center gap-2 text-sm font-semibold text-navy underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent"
+          >
+            体验在线产品 <ExternalLink className="h-4 w-4" />
+          </a>
+        )}
+
+        {item.documentUrl && (
+          <a
+            href={item.documentUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-3 inline-flex w-fit items-center gap-2 text-sm font-semibold text-navy underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent"
+          >
+            {item.documentLabel || '查看证明 PDF'} <ExternalLink className="h-4 w-4" />
+          </a>
+        )}
+
         {item.diagramZone && item.diagramZone.length > 0 && (
           <DiagramGallery images={item.diagramZone} />
+        )}
+
+        {item.liveDemoUrl && (item.imageSrc || item.slideImages) && (
+          <CompactLivePreview url={item.liveDemoUrl} title={item.title} />
         )}
       </motion.div>
     </div>

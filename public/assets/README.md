@@ -1,71 +1,40 @@
-# 📁 资源文件夹说明
+# 网站资源与占位图替换说明
 
-## 目录结构
+网页已经按“有真实材料就展示真实材料、没有就使用明确占位”的原则重新映射。后续只要用真实图片覆盖同名文件，就不需要修改网页代码。
 
-```
-public/assets/
-├── images/          ← 图片文件（照片、项目截图、证书等）
-├── documents/       ← 文档文件（简历 PDF 等）
-└── ppt/             ← 演示文稿（待补充）
-```
+## 已使用的正式资源
 
----
+- 个人照片：`images/profile.jpg`
+- 星瀚实习生活照：`images/xinghan-office-life.jpg`
+- 锦天城标识：`images/allbright-logo.png`
+- 汇衡并购讲习班获奖现场：`images/huiheng-mna-mvp.jpg`
+- 相勉课堂奖学金实拍：`images/xiangmian-scholarship.jpg`
+- 劳友记团队纪念证书：`images/lawbor-team-certificate.jpg`
+- 北大法宝证明：`images/pku-ai-winner.png`、`images/fabao-work-proof.png`
+- 复旦研究证明：`images/research-certificate.png`（已作为研究经历主图）
+- 浦东新区人民检察院：`images/pudong-procuratorate-internship-certificate.jpg`，原件位于 `documents/pudong-procuratorate-internship-certificate.pdf`
+- 汇衡并购讲习班：实拍 `images/huiheng-mna-mvp.jpg`、证书 `images/huiheng-mna-certificate.jpg`，原件位于 `documents/huiheng-mna-certificate.pdf`
+- 复旦三等奖学金：`images/fudan-third-scholarship.jpg`，原件位于 `documents/fudan-third-scholarship.pdf`
+- 相勉课堂：奖学金实拍 `images/xiangmian-scholarship.jpg`、评分表 `images/xiangmian-score-sheet.jpg`、结业证书 `images/xiangmian-completion-certificate.jpg`，原件位于 `documents/xiangmian-classroom-certificate-score.pdf`
+- Lawbor：直接嵌入 `https://lawbor.vercel.app` 的实时网页预览，点击卡片进入产品网站
+- 相勉课堂大作业：`https://lawplus-career-journey.pages.dev/`，已放入项目实践区
+- 腾讯开悟：关键页预览 `images/tencent-award-announcement-page-37.jpg`，原件 `documents/tencent-open-award-announcement.pdf`（智慧法治队，公告序号 432，文件第 37 页）
+- 小城杯演示页：`ppt/slides/slide_01.jpg` 等 4 张精选页
+- 最新中文简历：`documents/CV - CN - 2026.10.pdf`
 
-## 🖼️ 图片（`/assets/images/`）（板块照片大于一张时可编程照片墙左右滑动查看）
+## 国际活动 Gallery
 
-| 文件名                   | 用途说明                          | 引用方式                                  |
-| ------------------------ | --------------------------------- | ----------------------------------------- |
-| `profile.jpg`            | 首页个人照片                      | `/assets/images/profile.jpg`              |
-| `fabao-work-proof.png`  | 北大法宝实习工作内容，放在实习经历北大法宝的图表区              | `/assets/images/fabao-work-proof.png`     |
-| `fudan-student-proof.png` | 复旦大学在读证明，放在教育背景的复旦板块，当鼠标触及此处背景显示该图片                  | `/assets/images/fudan-student-proof.png`  |
-| `jiancha-fengyun-article.jpg` | 检察风云见刊文章              | `/assets/images/jiancha-fengyun-article.jpg` |
-| `research-certificate.png` | 项目参研证明，，放在项目经历复旦实验室的图表区                    | `/assets/images/research-certificate.png` |
-| `pku-ai-winner.png`     | 北大法宝AI训练营证书，放在实习经历北大法宝的图表区                | `/assets/images/pku-ai-winner.png`       |
-| `national-translation-contest-province-first.png` | 2021全国英语翻译大赛省一等奖 | `/assets/images/national-translation-contest-province-first.png` |
-| `national-english-competition-first.png` | 全国大学生英语竞赛全国一等奖 | `/assets/images/national-english-competition-first.png` |
-| `tell-china-stories-east-china-second.png` | 用英语讲中国故事华东1区二等奖 | `/assets/images/tell-china-stories-east-china-second.png` |
-| `tell-china-stories-wuxi-first.png` | 用英语讲中国故事无锡选区一等奖 | `/assets/images/tell-china-stories-wuxi-first.png` |
-| `cet4-671.png`           | 大学英语四级 671 分              | `/assets/images/cet4-671.png`             |
-| `cet6-644.png`           | 大学英语六级 644 分              | `/assets/images/cet6-644.png`             |
-| `ielts-certificate-7.5.jpg` | 雅思成绩单 7.5 分               | `/assets/images/ielts-certificate-7.5.jpg` |
-| `first-aid-certificate.png` | 中国红十字会救助员证书                      | `/assets/images/first-aid-certificate.png` |
-| `jiangnan-university-degree-certificate.png` | 江南大学学历证书，暂时不使用 | `/assets/images/jiangnan-university-degree-certificate.png` |
-| `jiangnan-university-graduation-certificate.png` | 江南大学毕业证书，放在教育背景的江南大学板块，当鼠标触及此处背景显示该图片 | `/assets/images/jiangnan-university-graduation-certificate.png` |
+- 国际海洋法法庭：`gallery/international-tribunal-hamburg.jpg`
+- 汉堡法学院交换生合照：`gallery/bucerius-exchange-group.jpg`
+- 外商交流活动：`gallery/foreign-business-meeting.jpg`
+- 排灯节文化活动：`gallery/diwali-party.jpg`
+- 复旦德语角：`gallery/fudan-german-corner.jpg`
 
----
+Gallery 会自动轮播，鼠标悬停时暂停，也可以使用左右按钮和缩略图切换。原图已统一缩放，并移除 GPS 与相机 EXIF 信息。
 
-## 📄 文档（`/assets/documents/`）
+## 隐私与呈现建议
 
-| 文件名                   | 用途说明                          | 引用方式                                    |
-| ------------------------ | --------------------------------- | ------------------------------------------- |
-| `resume-latest.pdf`      | 最新版简历 PDF                    | `/assets/documents/resume-latest.pdf`       |
-| `meituan-case.pdf`       | 小城杯比赛项目演示PDF                  | `/assets/documents/meituan-case.pdf`        |
-| `bucerius-certificate.pdf` | Bucerius 法学院证书（德语）       | `/assets/documents/bucerius-certificate.pdf` |
-
----
-
-## 📊 演示文稿（`/assets/ppt/`）
-
-> 目前暂无 PPT 文件，如有需要可放置于此。
-
----
-
-## 如何在代码中引用
-
-图片引用只需直接填写路径，例如：
-
-```tsx
-// 在 constants.ts 中修改 imageSrc
-imageSrc: '/assets/images/profile.jpg'
-
-// 在组件中直接用 src
-<img src="/assets/images/profile.jpg" alt="Macie" />
-```
-
----
-
-## 注意事项
-
-- 图片建议压缩到 500KB 以内，使用 JPG/WebP 格式以提升加载速度
-- 文件名全部使用小写英文 + 连字符，避免空格和中文
-- 放置文件后无需重启开发服务器，刷新页面即可生效
+- 上传前遮盖身份证号、学号、手机号、私人邮箱、签字和证件编号。
+- 工作材料必须去除客户名、合同方、案号及未公开数据。
+- 证书不必全部展示；网页只保留和“法律 AI / 数据合规 / 知识工程”定位有关的精选项目。
+- 项目截图尽量使用同一浏览器窗口比例和统一圆角，避免手机截图、证书扫描件、流程图混杂成不一致的视觉语言。

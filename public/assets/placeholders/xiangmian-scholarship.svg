@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="t d">
+  <title id="t">相勉课堂奖学金证书占位图</title><desc id="d">唯一奖学金获得者，后续替换为证书照片</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#11172d"/><stop offset=".55" stop-color="#2d2455"/><stop offset="1" stop-color="#694d72"/></linearGradient>
+    <radialGradient id="r"><stop stop-color="#ffbf8e" stop-opacity=".5"/><stop offset="1" stop-color="#ffbf8e" stop-opacity="0"/></radialGradient>
+    <pattern id="p" width="54" height="54" patternUnits="userSpaceOnUse"><path d="M54 0H0V54" fill="none" stroke="#fff" stroke-opacity=".045"/></pattern>
+  </defs>
+  <rect width="1600" height="1000" rx="72" fill="url(#g)"/><rect width="1600" height="1000" rx="72" fill="url(#p)"/><circle cx="1340" cy="170" r="520" fill="url(#r)"/>
+  <g font-family="Arial, PingFang SC, sans-serif" fill="#fff">
+    <text x="96" y="112" font-size="22" letter-spacing="7" fill="#ffd0ad">CAREER JOURNEY / CERTIFICATE PLACEHOLDER</text>
+    <text x="96" y="207" font-size="62" font-weight="700">相勉课堂奖学金</text>
+    <text x="96" y="262" font-size="27" fill="#d7c8dc">2026.04 · 本期唯一获得者</text>
+  </g>
+  <g transform="translate(405 360)" font-family="Arial, PingFang SC, sans-serif">
+    <rect width="790" height="430" rx="34" fill="#fff" fill-opacity=".94"/>
+    <path d="M92 122h606M92 184h606M92 246h430" stroke="#352850" stroke-opacity=".14" stroke-width="12" stroke-linecap="round"/>
+    <path d="m615 282 28 57 63 9-46 44 11 63-56-30-56 30 11-63-46-44 63-9z" fill="#9d7195" fill-opacity=".8"/>
+    <text x="92" y="75" fill="#352850" font-size="38" font-weight="700">SCHOLARSHIP CERTIFICATE</text>
+    <text x="92" y="370" fill="#352850" fill-opacity=".62" font-size="25">待替换：奖学金证书清晰照片</text>
+  </g>
+  <text x="96" y="918" font-family="Arial, PingFang SC, sans-serif" font-size="24" fill="#d7c8dc">REPLACE FILE · xiangmian-scholarship.svg</text>
+</svg>

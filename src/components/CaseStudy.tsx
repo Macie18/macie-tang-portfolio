@@ -1,78 +1,100 @@
 import React from 'react';
 import { motion } from 'motion/react';
+import { ArrowRight, FileCheck2, ScanSearch } from 'lucide-react';
+
+const STAGES = [
+  {
+    year: '2024',
+    label: '个人协助取证与维权',
+    icon: ScanSearch,
+    body: [
+      '在一起涉及多名受害者的网络诈骗事件中，我整理近 2 万字材料和 150 余张有效图片，协助 70 余名受害者形成统一证据包。',
+      '这段经历让我第一次面对“信息很多，但证据并不天然成立”的问题：事实需要排序，材料需要对应，结论需要可以复核。'
+    ],
+    metrics: [
+      { value: '2万字', label: '材料梳理' },
+      { value: '150+', label: '有效图片' },
+      { value: '70+', label: '受害者' },
+    ],
+  },
+  {
+    year: '2026',
+    label: '公益诉讼规范办案',
+    icon: FileCheck2,
+    body: [
+      '在浦东新区人民检察院公益诉讼办公室，我参与 40 余件案件的材料整理，并完成 30 余册卷宗归档。',
+      '我开始用规范办案的标准重新理解证据：来源、主体、时间、证明目的和材料之间的关联，都必须留下清晰路径。'
+    ],
+    metrics: [
+      { value: '40+', label: '参与案件' },
+      { value: '30+', label: '归档卷宗' },
+      { value: '10+', label: '外出取证' },
+    ],
+  },
+];
 
 export default function CaseStudy() {
   return (
-    <section id="case-study" className="py-32 bg-[#F3F4F6]">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="max-w-5xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-24"
-          >
-            <h2 className="text-base font-bold uppercase tracking-[0.3em] text-accent mb-8">案例研究 (Case Study)</h2>
-            <p className="text-4xl md:text-5xl lg:text-7xl font-serif italic text-navy leading-[1.1] text-balance font-kai">
-              "源于法学生的朴素正义感，从野蛮生长的私力救济，落地于国家司法机关的规范实务审查。"
-            </p>
-          </motion.div>
+    <section id="case-study" className="relative scroll-mt-20 overflow-hidden bg-[#eef1f7] py-24 md:py-32">
+      <div className="case-grid" aria-hidden="true" />
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto max-w-4xl text-center"
+        >
+          <p className="section-kicker">Evidence case study</p>
+          <h2 className="mt-5 text-4xl font-semibold tracking-[-0.045em] text-navy md:text-6xl">
+            从个人取证到规范办案
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-secondary-grey md:text-lg">
+            两段相隔两年的经历，让我重新理解同一件事：信息只有被整理成可追溯、可复核的链条，才会成为真正有用的证据。
+          </p>
+        </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div className="flex items-baseline gap-4 border-b border-navy/10 pb-4">
-                <span className="text-6xl font-serif font-black opacity-10 italic">2024</span>
-                <h3 className="text-xl font-bold uppercase tracking-widest text-navy pt-2">朴素正义与野蛮生长</h3>
-              </div>
-              
-              <div className="text-base text-secondary-grey leading-[1.8] font-kai opacity-90 text-justify space-y-4">
-                <p>面对一起受害者分散、立案困难的网络诈骗案，出于法学生的朴素正义感与对群众期盼的回应，我结合 CS 背景的技术手段展开了私力救济。</p>
-                <p>连续高负荷一周，我独自梳理了近 2 万字铁证、提取 150+ 张有效图片，并使用技术手段锁定骗子团伙最终成功为 70 余位受害者追回全部欠款。</p>
-                <p>这次一线维权，不仅锤炼了我处理海量复杂数字证据的爆发力和执行力，更让我有种从人民中来到人民中去的成就感。</p>
-              </div>
-              
-              <div className="p-8 bg-warm-white rounded-3xl border border-navy/5 shadow-sm relative">
-                <div className="absolute -top-4 -left-4 w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center font-serif text-accent text-2xl rotate-12">“</div>
-                <p className="text-sm font-kai italic text-navy/70 leading-relaxed">
-                  "技术不应只是为了效率，更应是为了在无声处听惊雷，在细微处见正义。"
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <div className="flex items-baseline gap-4 border-b border-navy/10 pb-4">
-                <span className="text-6xl font-serif font-black opacity-10 italic">2026</span>
-                <h3 className="text-xl font-bold uppercase tracking-widest text-navy pt-2">沉淀于检察院的规范实务</h3>
-              </div>
-              
-              <div className="text-base text-secondary-grey leading-[1.8] font-kai opacity-90 text-justify space-y-4">
-                <p>带着野蛮生长的一线实战经验与对规范工作的好奇心，我进入浦东新区检察院公益检察室实习。</p>
-                <p>在协助整理近 40 起真实案件（含大量网络诈骗案）的过程中，我学会了如何规范固定证据、细致整理案宗材料。</p>
-                <p>这种从草根维权到规范司法实务的沉淀，彻底重塑了我对待证据链条与实务操作的严谨态度。</p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-6 mt-12">
-                <div className="p-6 bg-navy/5 rounded-2xl border border-navy/5">
-                  <p className="text-3xl font-bold text-navy font-serif italic">10万元+</p>
-                  <p className="text-[10px] uppercase text-navy/40 font-bold tracking-widest mt-2">受害者追回欠款</p>
-                </div>
-                <div className="p-6 bg-navy/5 rounded-2xl border border-navy/5">
-                  <p className="text-3xl font-bold text-navy font-serif italic">40+</p>
-                  <p className="text-[10px] uppercase text-navy/40 font-bold tracking-widest mt-2">真实案件整理</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+        <div className="relative mt-16 grid gap-8 lg:mt-24 lg:grid-cols-[1fr_auto_1fr] lg:gap-10">
+          {STAGES.map((stage, index) => {
+            const Icon = stage.icon;
+            return (
+              <React.Fragment key={stage.year}>
+                <motion.article
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.65, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="case-card"
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-serif text-5xl font-semibold text-accent/25">{stage.year}</span>
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-accent/10 text-accent">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                  </div>
+                  <h3 className="mt-6 text-2xl font-semibold tracking-[-0.025em] text-navy">{stage.label}</h3>
+                  <div className="mt-5 space-y-4 text-sm leading-7 text-secondary-grey">
+                    {stage.body.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+                  </div>
+                  <div className="mt-8 grid grid-cols-3 gap-2 border-t border-navy/10 pt-6">
+                    {stage.metrics.map(metric => (
+                      <div key={metric.label}>
+                        <p className="font-serif text-xl font-semibold text-navy">{metric.value}</p>
+                        <p className="mt-1 text-[10px] leading-4 text-navy/40">{metric.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.article>
+                {index === 0 && (
+                  <div className="hidden items-center justify-center text-accent lg:flex" aria-hidden="true">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-full border border-accent/20 bg-white/80 shadow-sm">
+                      <ArrowRight className="h-5 w-5" />
+                    </div>
+                  </div>
+                )}
+              </React.Fragment>
+            );
+          })}
         </div>
       </div>
     </section>
